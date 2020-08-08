@@ -11,7 +11,7 @@ class SaleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sale
-        fields = ('id','state','type_receipt', 'num_receipt', 'serie_receipt', 'tax', 'created_at', 'updated_at', 'deleted_at', 'client', 'clientid') 
+        fields = ('id','state','type_receipt', 'num_receipt', 'serie_receipt', 'tax', 'total_sale', 'created_at', 'updated_at', 'deleted_at', 'client', 'clientid') 
 
 class SaleDetailSerializer(serializers.ModelSerializer):
     class Meta:
