@@ -3,7 +3,7 @@ import uuid
 from django.db.models import Sum, Count, FloatField, F
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from ..entries.models import BaseModel, Item, Person #importo del models de la app entries
+from ..entries.models import BaseModel, Item, Person, EntryDetail #importo del models de la app entries
 
 # Create your models here.
 class Sale(BaseModel):
@@ -24,7 +24,7 @@ class Sale(BaseModel):
 class SaleDetail(BaseModel):
     quantity = models.IntegerField(null=False) #cantidad    
     sale_price = models.DecimalField(max_digits=11, decimal_places=2, null=False) #precio venta
-    discount = models.DecimalField(max_digits=11, decimal_places=2, null=False) #descuento
+    discount = models.DecimalField(max_digits=11, decimal_places=2, default="0") #descuento
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE) #idsale
     item = models.ForeignKey(Item, on_delete=models.CASCADE) #iditem
 
@@ -38,6 +38,7 @@ def saleDetail_save(sender, instance, **kwargs): #cuando se guarde un saledetail
     sale_id = instance.sale.id
     item_id = instance.item.id
 
+    #calcular total_sale
     sale = Sale.objects.get(pk=sale_id) 
     if sale:
         sub_total = SaleDetail.objects \
@@ -54,10 +55,20 @@ def saleDetail_save(sender, instance, **kwargs): #cuando se guarde un saledetail
         sale.total_sale = sub_total - discount
         sale.save() 
 
+    #actualizar stock
     item = Item.objects.get(pk = item_id)
     if item:
         new_stock = int(item.stock) - int(instance.quantity)
         item.stock = new_stock
         item.save() 
+
+    #actualizar el sale_price del EntryDetail a partir del ultimo sale_price q haya tenido un item en el SaleDetail 
+    entryDetail = EntryDetail.objects.filter(item = item_id)
+    if entryDetail:
+        sale_price = instance.sale_price
+        quantity = instance.quantity
+        lastSale_price = float(sale_price) / float(quantity)
+        entryDetail.update(sale_price=lastSale_price)
+
 
     

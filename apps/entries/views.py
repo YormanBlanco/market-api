@@ -236,7 +236,7 @@ class EntryViewSet(viewsets.ViewSet):
         search = request.GET.get('search', None)
         if search is not None: #si hay una busqueda
             queryset = queryset.filter(
-                Q(type_receipt = search) | Q(num_receipt = search) | Q(serie_receipt = search) |
+                Q(type_receipt__icontains = search) | Q(num_receipt = search) | Q(serie_receipt = search) |
                 Q(provider__name__icontains = search) | Q(provider__lastname__icontains = search) | Q(provider__dni__icontains = search),
                 state = True
             ).distinct()
@@ -283,7 +283,7 @@ class EntryDetailViewSet(viewsets.ViewSet):
         search = request.GET.get('search', None)
         if search is not None: #si hay una busqueda
             queryset = queryset.filter(
-                Q(id = search) | Q(purchase_price = search) | Q(sale_price = search) |
+                Q(purchase_price__icontains = search) | Q(sale_price__icontains = search) |
                 Q(entry__provider__name__icontains = search) | Q(entry__provider__lastname__icontains = search) | Q(entry__provider__dni__icontains = search) |Q(item__name__icontains = search) | Q(item__brand__icontains = search),
                 state = True
             ).distinct()
