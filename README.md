@@ -12,7 +12,9 @@
 
  - Django 2 o superior
 
- - Tener una cuenta en cloudinary, puedes creartela en: [Cloudinary/register](https://cloudinary.com/users/register/free) 
+ - Tener una cuenta en cloudinary, puedes creartela en: 
+  [Cloudinary/register](https://cloudinary.com/users/register/free) 
+
 
  
 
