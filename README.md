@@ -19,7 +19,7 @@
 
 ### Instalación 🔧
 
- _Dirigite a la ruta del directorio
+ _Dirigite a la ruta del directorio_
 
  Crea un entorno virtual:
 ```
@@ -38,7 +38,7 @@
 
  ![Texto alternativo](images/cloudinary.png "Cloudinary dashboard")
 
-  _ Dirigite a la raiz de tu directorio _
+  _Dirigite a la raiz de tu directorio_
 
  Crea un nuevo archivo .env
 
@@ -51,7 +51,7 @@
  API_SECRET = 'ejemplo'
  
 
- _ Dirigite a la ruta del directorio donde se encuentre el archivo manage.py _
+ _Dirigite a la ruta del directorio donde se encuentre el archivo manage.py_
 
  Corre las migraciones:
 
@@ -89,7 +89,7 @@ _Puedes usar postman o alguna aplicación similar, aunque djangorestframework pr
  Dirigite a la ruta localhost:8000/entries/ para interactuar con la entrada de articulos o localhost:8000/sales/  
  para interactura con la salida de artículos
 
-_ Algo así se vería: _
+_Algo así se vería:_
 
 ![Texto alternativo](images/apiroot.png "Apiroot entries")
 
