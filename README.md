@@ -48,9 +48,12 @@
   
  algo así:
 
+ ```
  CLOUD_NAME = 'ejemplo'
  API_KEY = 'ejemplo'
  API_SECRET = 'ejemplo'
+ 
+```
  
 
  _Dirigite a la ruta del directorio donde se encuentre el archivo manage.py_
